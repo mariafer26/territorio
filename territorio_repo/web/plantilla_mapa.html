@@ -1,0 +1,370 @@
+<title>Territorios en Equilibrio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: tablero de tres columnas (variables · mapa · ranking) sobre una franja de explicación y ficha del modelo */
+:root{
+  --bg:#ece6d6; --panel:#f4efe3; --ink:#1d3328; --muted:#5c6b60; --rule:#d3c9b2;
+  --green:#4f7a5e; --ochre:#c0873a; --terra:#a8493a; --neutral-fill:#ddd3bd;
+  --accent:#1f3a2e; --accent-ink:#f4efe3; --label-ink:#ffffff; --halo:rgba(30,25,15,.45);
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#161c18; --panel:#1e2621; --ink:#e8e2d2; --muted:#a3ab9f; --rule:#34403a;
+  --green:#5f8f6f; --ochre:#c8923f; --terra:#b65a48; --neutral-fill:#3a443d;
+  --accent:#d9cfb5; --accent-ink:#161c18; --label-ink:#ffffff; --halo:rgba(0,0,0,.55); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#161c18; --panel:#1e2621; --ink:#e8e2d2; --muted:#a3ab9f; --rule:#34403a;
+  --green:#5f8f6f; --ochre:#c8923f; --terra:#b65a48; --neutral-fill:#3a443d;
+  --accent:#d9cfb5; --accent-ink:#161c18; --label-ink:#ffffff; --halo:rgba(0,0,0,.55); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:28px 48px}
+.wrap{max-width:1240px;margin:0 auto;display:grid;gap:22px}
+.eyebrow,.lbl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:18px;border-bottom:2px solid var(--accent)}
+header h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,5vw,46px);line-height:1.05;margin:6px 0 8px;text-wrap:balance}
+header p{margin:0;max-width:58ch;color:var(--muted)}
+.meta{text-align:right;display:grid;gap:6px;justify-items:end;font-size:13px;color:var(--muted)}
+.pill{border:1px solid var(--ink);border-radius:999px;padding:3px 12px;font-size:12px;color:var(--ink)}
+.grid{display:grid;grid-template-columns:230px minmax(0,1fr) 270px;gap:18px;align-items:start}
+.box{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:16px 18px;min-width:0}
+h2{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 4px;line-height:1.2}
+h3{font-family:var(--display);font-weight:600;font-size:16px;margin:0}
+.side{display:grid;gap:14px}
+.vars{display:grid;gap:7px}
+.vars button{all:unset;cursor:pointer;display:flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid var(--rule);border-radius:3px;font-size:13.5px}
+.vars button::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.75}
+.vars button:hover{border-color:var(--ink)}
+.vars button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.vars button:focus-visible,.munis button:focus-visible,.back:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+.how dl{margin:0;display:grid;gap:10px;font-size:13px}
+.how dt{font-weight:600}.how dd{margin:0;color:var(--muted)}
+.maphead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.maphead p{margin:2px 0 0;font-size:13px;color:var(--muted);max-width:60ch}
+#map{width:100%;height:auto;display:block;margin-top:6px}
+#map .sub{stroke:var(--panel);stroke-width:1.6;cursor:pointer;transition:opacity .15s}
+#map .mun{fill:transparent;stroke:none;cursor:pointer}
+#map .mun:hover{fill:var(--halo);fill-opacity:.25}
+#map .mesh{fill:none;stroke:var(--panel);stroke-opacity:.35;stroke-width:.6;pointer-events:none}
+#map .outline{fill:none;stroke:var(--ink);stroke-width:2.4;pointer-events:none}
+#map text{font-family:var(--body);font-weight:600;fill:var(--label-ink);stroke:var(--halo);stroke-width:3px;paint-order:stroke;pointer-events:none;text-anchor:middle}
+#map .leader{stroke:var(--ink);stroke-width:1}
+.legend{margin-top:6px}
+.legend .bar{height:10px;border-radius:2px}
+.legend .ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);padding:7px 10px;border-radius:3px;font-size:12.5px;line-height:1.35;z-index:5;max-width:220px}
+.rank ol{list-style:none;margin:10px 0 0;padding:0;display:grid}
+.rank li{display:grid;grid-template-columns:22px 1fr auto;gap:2px 8px;align-items:center;padding:8px 0;border-top:1px solid var(--rule);cursor:pointer}
+.rank li[aria-current="true"] .nm{font-weight:600}
+.rank .n{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.rank .nm{font-size:13.5px}.rank .v{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.rank .track{grid-column:2/4;height:4px;background:var(--neutral-fill);border-radius:2px;overflow:hidden}
+.rank .track i{display:block;height:100%}
+.lower{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:18px;align-items:start}
+.why .lead{font-size:15.5px;max-width:68ch;margin:6px 0 12px}
+.why .lead b{font-weight:600}
+#wf{width:100%;height:auto;display:block}
+#wf text{font-family:var(--body);font-size:12.5px;fill:var(--ink)}
+#wf .num{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+#wf .axis{fill:var(--muted);font-size:11px}
+.munis{margin-top:14px;border-top:1px solid var(--rule);padding-top:12px}
+.munis-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.munis ul{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 18px}
+.munis button{all:unset;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 44px 88px;gap:8px;align-items:center;width:100%;padding:4px 0;font-size:13px}
+.munis button[aria-pressed="true"]{font-weight:600}
+.munis .mb{height:6px;background:var(--neutral-fill);border-radius:2px;overflow:hidden}.munis .mb i{display:block;height:100%}
+.munis .mv{font-family:var(--mono);font-size:12px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.back{all:unset;cursor:pointer;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.model table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;font-variant-numeric:tabular-nums}
+.model th,.model td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--rule)}
+.model td+td,.model th+th{text-align:right;font-family:var(--mono);font-size:12px}
+.model tr.sel td{font-weight:600}
+.model p{font-size:13px;color:var(--muted);margin:8px 0 0}
+.imp{display:grid;gap:6px;margin-top:10px}
+.imp div{display:grid;grid-template-columns:128px 1fr 34px;gap:8px;align-items:center;font-size:12.5px}
+.imp i{display:block;height:8px;background:var(--accent);border-radius:1px}
+.imp span:last-child{font-family:var(--mono);font-size:12px;text-align:right}
+footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:12px;display:grid;gap:4px}
+@media (max-width:1020px){.grid{grid-template-columns:1fr 1fr}.grid .mapbox{grid-column:1/-1;order:-1}.lower{grid-template-columns:1fr}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}.meta{text-align:left;justify-items:start}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Reto territorio equitativo · Agenda Antioquia 2040</div>
+      <h1>Territorios en Equilibrio</h1>
+      <p>Mapa predictivo que prioriza dónde invertir para cerrar brechas de pobreza multidimensional en las 9 subregiones de Antioquia, con datos oficiales del DANE y un modelo que explica cada resultado.</p>
+    </div>
+    <div class="meta">
+      <span class="pill">Prototipo · Fase 2</span>
+      <span>Movilizador 1.4 — Pobreza extrema cero</span>
+      <span>Herramienta de apoyo a la decisión</span>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside class="side">
+      <section class="box">
+        <h2>Ver el mapa por</h2>
+        <div class="vars" id="vars" role="group" aria-label="Variable del mapa"></div>
+      </section>
+      <section class="box how">
+        <h2>Cómo funciona</h2>
+        <dl>
+          <div><dt>Datos</dt><dd>15 privaciones del censo 2018 (DANE) para los 1.122 municipios del país.</dd></div>
+          <div><dt>Modelo</dt><dd id="how-model">XGBoost, validado con datos que no vio al entrenar.</dd></div>
+          <div><dt>Salida</dt><dd>Índice de riesgo 0–100: % estimado de personas en pobreza multidimensional.</dd></div>
+          <div><dt>Explicación</dt><dd>SHAP reparte el riesgo de cada zona entre las 5 dimensiones.</dd></div>
+        </dl>
+      </section>
+    </aside>
+
+    <section class="box mapbox">
+      <div class="maphead">
+        <div>
+          <h2>Antioquia por subregión</h2>
+          <p id="map-sub">Toca una subregión o un municipio para ver por qué tiene ese nivel de riesgo.</p>
+        </div>
+        <span class="lbl" id="map-var"></span>
+      </div>
+      <svg id="map" viewBox="0 0 600 640" role="img" aria-label="Mapa de riesgo por subregión de Antioquia"></svg>
+      <div class="legend"><div class="bar" id="leg-bar"></div><div class="ticks" id="leg-ticks"></div></div>
+    </section>
+
+    <aside class="box rank">
+      <h2>Subregiones prioritarias</h2>
+      <span class="lbl" id="rank-lbl"></span>
+      <ol id="rank"></ol>
+    </aside>
+  </div>
+
+  <div class="lower">
+    <section class="box why">
+      <span class="lbl" id="why-lbl">Explicación del modelo</span>
+      <h2 id="why-title"></h2>
+      <p class="lead" id="why-lead"></p>
+      <svg id="wf" viewBox="0 0 640 230" aria-label="Descomposición del riesgo por dimensión"></svg>
+      <div class="munis">
+        <div class="munis-head"><h3 id="munis-title"></h3><span class="lbl">Riesgo estimado · IPM real DANE</span></div>
+        <ul id="munis"></ul>
+      </div>
+    </section>
+
+    <section class="box model">
+      <span class="lbl">Ficha del modelo</span>
+      <h2>¿Qué tan confiable es?</h2>
+      <table id="metrics"><thead><tr><th>Modelo</th><th>Error medio Antioquia</th><th>R²</th></tr></thead><tbody></tbody></table>
+      <p id="metrics-note"></p>
+      <h3 style="margin-top:16px">Peso de cada dimensión</h3>
+      <div class="imp" id="imp"></div>
+      <p>Aporte medio al riesgo en puntos, en todo el país.</p>
+    </section>
+  </div>
+
+  <footer>
+    <span>Fuente: DANE, Medida de pobreza multidimensional municipal de fuente censal, CNPV 2018. El índice de cada subregión es el promedio de sus municipios.</span>
+    <span>El modelo ordena prioridades; la decisión de inversión es humana y debe contrastarse con las comunidades. Grupo 19 · Cátedra G8: ética y tecnología en la era de la IA.</span>
+  </footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script type="application/json" id="datos-modelo">{}</script>
+<script type="application/json" id="geo-antioquia">{}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+const D = JSON.parse(document.getElementById("datos-modelo").textContent);
+const T = JSON.parse(document.getElementById("geo-antioquia").textContent);
+const DIMS = Object.keys(D.dimensiones);
+const SUB = Object.fromEntries(D.subregiones.map(s => [s.nombre, s]));
+const MUN = Object.fromEntries(D.municipios.map(m => [m.id, m]));
+const fmt = v => v.toLocaleString("es-CO", {minimumFractionDigits: 1, maximumFractionDigits: 1});
+const sgn = v => (v > 0 ? "+" : v < 0 ? "−" : "") + fmt(Math.abs(v));
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+let variable = "general", selSub = D.subregiones[0].nombre, selMun = null;
+
+/* ---------- escalas ---------- */
+function scale() {
+  if (variable === "general")
+    return d3.scaleLinear().domain([10, 35, 60]).range([css("--green"), css("--ochre"), css("--terra")]).clamp(true).interpolate(d3.interpolateRgb);
+  return d3.scaleLinear().domain([-8, 0, 8]).range([css("--green"), css("--neutral-fill"), css("--terra")]).clamp(true).interpolate(d3.interpolateRgb);
+}
+const valSub = s => variable === "general" ? s.riesgo : s.aportes[variable];
+const valMun = m => variable === "general" ? m.riesgo : m.aportes[variable];
+
+/* ---------- selector de variable ---------- */
+const varsEl = document.getElementById("vars");
+[["general", "Índice de riesgo"], ...DIMS.map(d => [d, d])].forEach(([k, label]) => {
+  const b = document.createElement("button");
+  b.id = "var-" + k.replace(/\W+/g, "-"); b.textContent = label; b.dataset.k = k;
+  b.onclick = () => { variable = k; render(); };
+  varsEl.appendChild(b);
+});
+
+/* ---------- geometría ---------- */
+const mpios = topojson.feature(T, T.objects.m).features;
+mpios.forEach(f => f.properties.sub = MUN[f.id].subregion);
+const subFeatures = D.subregiones.map(s => ({type: "Feature", properties: {nombre: s.nombre},
+  geometry: topojson.merge(T, T.objects.m.geometries.filter(g => MUN[g.id].subregion === s.nombre))}));
+const W = 600, H = 640;
+const proj = d3.geoMercator().fitExtent([[10, 10], [W - 10, H - 70]], {type: "FeatureCollection", features: subFeatures});
+const path = d3.geoPath(proj);
+const svg = d3.select("#map");
+const gSub = svg.append("g"), gMesh = svg.append("g"), gMun = svg.append("g"), gSel = svg.append("g"), gLab = svg.append("g");
+gSub.selectAll("path").data(subFeatures).join("path").attr("class", "sub").attr("d", path);
+gMesh.append("path").attr("class", "mesh")
+  .attr("d", path(topojson.mesh(T, T.objects.m, (a, b) => a !== b && MUN[a.id].subregion === MUN[b.id].subregion)));
+const tip = document.getElementById("tip");
+gMun.selectAll("path").data(mpios).join("path").attr("class", "mun").attr("d", path)
+  .on("mousemove", (e, f) => {
+    const m = MUN[f.id];
+    tip.innerHTML = `<b>${m.nombre}</b> · ${m.subregion}<br>Riesgo estimado ${fmt(m.riesgo)} · IPM real ${fmt(m.ipm_real)}` +
+      (variable === "general" ? "" : `<br>${variable}: ${sgn(m.aportes[variable])} pts`);
+    tip.hidden = false;
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 230) + "px"; tip.style.top = (e.clientY + 14) + "px";
+  })
+  .on("mouseleave", () => tip.hidden = true)
+  .on("click", (e, f) => { selSub = MUN[f.id].subregion; selMun = f.id; render(); });
+
+const labelPos = subFeatures.map(f => {
+  const [x, y] = path.centroid(f), n = f.properties.nombre;
+  if (n === "Valle de Aburrá") return {n, x, y, lx: x, ly: path.bounds(f)[1][1] + 70, leader: true};
+  if (n === "Magdalena Medio") return {n, x, y, lx: x + 6, ly: y + 8};
+  return {n, x, y, lx: x, ly: y};
+});
+
+/* ---------- render ---------- */
+function render() {
+  const sc = scale();
+  document.querySelectorAll("#vars button").forEach(b => b.setAttribute("aria-pressed", b.dataset.k === variable));
+  document.getElementById("map-var").textContent = variable === "general" ? "Variable: índice de riesgo" : "Variable: " + variable;
+
+  gSub.selectAll("path").attr("fill", f => sc(valSub(SUB[f.properties.nombre])));
+  gSel.selectAll("*").remove();
+  gSel.append("path").attr("class", "outline").attr("d", path(subFeatures.find(f => f.properties.nombre === selSub)));
+  if (selMun) gSel.append("path").attr("class", "outline").attr("stroke-dasharray", "3 2").attr("d", path(mpios.find(f => f.id === selMun)));
+
+  gLab.selectAll("*").remove();
+  const k = Math.min(1.6, Math.max(1, 520 / (svg.node().clientWidth || 600)));
+  labelPos.forEach(p => {
+    const s = SUB[p.n], v = valSub(s);
+    const light = d3.lab(sc(v)).l > 68;
+    if (p.leader) gLab.append("line").attr("class", "leader").attr("x1", p.x).attr("y1", p.y).attr("x2", p.lx).attr("y2", p.ly - 14 * k);
+    const t = gLab.append("text").attr("x", p.lx).attr("y", p.ly);
+    if (p.leader || light) t.style("fill", "var(--ink)").style("stroke", "none");
+    t.append("tspan").attr("font-size", 12.5 * k).text(p.n);
+    t.append("tspan").attr("x", p.lx).attr("dy", 15 * k).attr("font-size", 13 * k).attr("font-family", "var(--mono)")
+      .text(variable === "general" ? fmt(v) : sgn(v));
+  });
+
+  // leyenda
+  const dom = sc.domain(), stops = d3.range(0, 1.0001, .1).map(t => sc(dom[0] + t * (dom[2] - dom[0])));
+  document.getElementById("leg-bar").style.background = `linear-gradient(90deg, ${stops.join(",")})`;
+  document.getElementById("leg-ticks").innerHTML = variable === "general"
+    ? `<span>≤10 · riesgo bajo</span><span>35</span><span>≥60 · riesgo alto</span>`
+    : `<span>−8 pts · reduce el riesgo</span><span>0</span><span>+8 pts · lo eleva</span>`;
+
+  // ranking
+  const ranked = [...D.subregiones].sort((a, b) => valSub(b) - valSub(a));
+  document.getElementById("rank-lbl").textContent = variable === "general"
+    ? "Índice de riesgo 0–100" : "Puntos que aporta " + variable.toLowerCase();
+  const maxAbs = Math.max(...ranked.map(s => Math.abs(valSub(s))));
+  document.getElementById("rank").innerHTML = ranked.map((s, i) => {
+    const v = valSub(s), w = variable === "general" ? v : Math.abs(v) / maxAbs * 100;
+    return `<li data-n="${s.nombre}" aria-current="${s.nombre === selSub}" tabindex="0"><span class="n">${String(i + 1).padStart(2, "0")}</span>
+      <span class="nm">${s.nombre}</span><span class="v">${variable === "general" ? fmt(v) : sgn(v)}</span>
+      <span class="track"><i style="width:${w}%;background:${sc(v)}"></i></span></li>`;
+  }).join("");
+  document.querySelectorAll("#rank li").forEach(li => {
+    const go = () => { selSub = li.dataset.n; selMun = null; render(); };
+    li.onclick = go; li.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } };
+  });
+
+  renderWhy();
+}
+
+function renderWhy() {
+  const s = SUB[selSub], m = selMun ? MUN[selMun] : null, obj = m || s;
+  const base = obj.base;
+  const nombre = m ? m.nombre : s.nombre;
+  document.getElementById("why-lbl").textContent = m ? "Municipio · " + m.subregion : "Subregión · " + s.municipios + " municipios";
+  document.getElementById("why-title").textContent = `¿Por qué ${nombre} tiene un riesgo de ${fmt(obj.riesgo)}?`;
+  const ord = DIMS.map(d => [d, obj.aportes[d]]).sort((a, b) => b[1] - a[1]);
+  const diff = obj.riesgo - base, up = ord.filter(x => x[1] >= 0.5), down = ord.filter(x => x[1] <= -0.5).reverse();
+  let lead = `El riesgo estimado es <b>${fmt(obj.riesgo)}</b>, ${fmt(Math.abs(diff))} puntos ${diff >= 0 ? "por encima" : "por debajo"} del promedio nacional (${fmt(base)}). `;
+  if (up.length) lead += `Lo que más lo eleva: <b>${up.slice(0, 2).map(x => `${x[0].toLowerCase()} (${sgn(x[1])})`).join(" y ")}</b>. `;
+  if (down.length) lead += `Lo que más lo reduce: ${down.slice(0, 2).map(x => `${x[0].toLowerCase()} (${sgn(x[1])})`).join(" y ")}. `;
+  lead += `El IPM real medido por el DANE fue ${fmt(obj.ipm_real)}.`;
+  document.getElementById("why-lead").innerHTML = lead;
+  drawWaterfall(base, obj, ord.map(x => x[0]));
+
+  // municipios de la subregión
+  document.getElementById("munis-title").innerHTML = `Municipios de ${s.nombre}` +
+    (m ? ` · <button class="back" id="back">ver toda la subregión</button>` : "");
+  if (m) document.getElementById("back").onclick = () => { selMun = null; render(); };
+  const sc = d3.scaleLinear().domain([10, 35, 60]).range([css("--green"), css("--ochre"), css("--terra")]).clamp(true);
+  const ms = D.municipios.filter(x => x.subregion === s.nombre);
+  document.getElementById("munis").innerHTML = ms.map(x =>
+    `<li><button data-id="${x.id}" aria-pressed="${x.id === selMun}"><span>${x.nombre}</span>
+      <span class="mb"><i style="width:${x.riesgo}%;background:${sc(x.riesgo)}"></i></span>
+      <span class="mv">${fmt(x.riesgo)} · ${fmt(x.ipm_real)}</span></button></li>`).join("");
+  document.querySelectorAll("#munis button").forEach(b => b.onclick = () => { selMun = b.dataset.id; render(); });
+}
+
+function drawWaterfall(base, obj, dims) {
+  const g = d3.select("#wf"); g.selectAll("*").remove();
+  const VW = Math.max(320, Math.min(640, document.getElementById("wf").clientWidth || 640));
+  const L = VW < 480 ? 122 : 150, R = VW - 46, rowH = 28, top = 8;
+  const rows = [{k: "Promedio nacional", a: 0, b: base, kind: "base"}];
+  let c = base;
+  dims.forEach(d => { const v = obj.aportes[d]; rows.push({k: d, a: c, b: c + v, v, kind: v >= 0 ? "up" : "down"}); c += v; });
+  rows.push({k: "Riesgo estimado", a: 0, b: obj.riesgo, kind: "total"});
+  const max = Math.max(80, d3.max(rows, r => Math.max(r.a, r.b)) + 6);
+  const x = d3.scaleLinear().domain([0, max]).range([L, R]);
+  const h = top + rows.length * rowH + 26;
+  g.attr("viewBox", `0 0 ${VW} ${h}`);
+  [0, 20, 40, 60, 80].filter(t => t <= max).forEach(t => {
+    g.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", top).attr("y2", h - 22).attr("stroke", css("--rule"));
+    g.append("text").attr("class", "axis num").attr("x", x(t)).attr("y", h - 6).attr("text-anchor", "middle").text(t);
+  });
+  const col = {base: css("--neutral-fill"), up: css("--terra"), down: css("--green"),
+    total: d3.scaleLinear().domain([10, 35, 60]).range([css("--green"), css("--ochre"), css("--terra")]).clamp(true)(obj.riesgo)};
+  rows.forEach((r, i) => {
+    const y = top + i * rowH, x0 = x(Math.min(r.a, r.b)), x1 = x(Math.max(r.a, r.b));
+    g.append("text").attr("x", 0).attr("y", y + 17).attr("font-weight", r.kind === "total" ? 600 : 400).text(r.k);
+    g.append("rect").attr("x", x0).attr("y", y + 5).attr("width", Math.max(1.5, x1 - x0)).attr("height", rowH - 10).attr("rx", 1.5).attr("fill", col[r.kind]);
+    if (i > 0 && i < rows.length - 1)
+      g.append("line").attr("x1", x(r.a)).attr("x2", x(r.a)).attr("y1", y - 5).attr("y2", y + 5).attr("stroke", css("--muted")).attr("stroke-dasharray", "2 2");
+    const lbl = r.kind === "base" || r.kind === "total" ? fmt(r.b) : sgn(r.v);
+    g.append("text").attr("class", "num").attr("x", x1 + 6).attr("y", y + 17).text(lbl);
+  });
+}
+
+/* ---------- ficha del modelo ---------- */
+(function model() {
+  document.getElementById("how-model").textContent = `${D.modelo}, validado con municipios que no vio al entrenar.`;
+  document.querySelector("#metrics tbody").innerHTML = Object.entries(D.metricas).map(([k, v]) =>
+    `<tr class="${k === D.modelo ? "sel" : ""}"><td>${k}</td><td>${fmt(v["Error medio Antioquia (pts)"])} pts</td><td>${v["R² Antioquia"].toFixed(2)}</td></tr>`).join("");
+  const mm = D.metricas[D.modelo];
+  document.getElementById("metrics-note").textContent =
+    `En promedio, la estimación se aleja ${fmt(mm["Error medio Antioquia (pts)"])} puntos del IPM real de cada municipio de Antioquia. ` +
+    `La regresión lineal rinde casi igual porque el DANE construye el IPM sumando privaciones; el modelo de árboles se justifica cuando se alimente con fuentes más ruidosas e incompletas.`;
+  const mx = Math.max(...Object.values(D.importancia));
+  document.getElementById("imp").innerHTML = Object.entries(D.importancia).map(([d, v]) =>
+    `<div><span>${d}</span><i style="width:${v / mx * 100}%"></i><span>${fmt(v)}</span></div>`).join("");
+})();
+
+render();
+const rerender = () => render();
+let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(rerender, 150); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rerender);
+new MutationObserver(rerender).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
+</script>

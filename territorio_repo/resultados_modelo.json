@@ -1,0 +1,2064 @@
+{
+ "fuente": "DANE — Medida de pobreza multidimensional municipal de fuente censal, CNPV 2018",
+ "modelo": "XGBoost",
+ "metricas": {
+  "Regresión lineal (referencia)": {
+   "R² Colombia": 0.972,
+   "Error medio Colombia (pts)": 2.0,
+   "R² Antioquia": 0.982,
+   "Error medio Antioquia (pts)": 1.6
+  },
+  "Random Forest": {
+   "R² Colombia": 0.956,
+   "Error medio Colombia (pts)": 2.6,
+   "R² Antioquia": 0.973,
+   "Error medio Antioquia (pts)": 1.9
+  },
+  "XGBoost": {
+   "R² Colombia": 0.978,
+   "Error medio Colombia (pts)": 1.9,
+   "R² Antioquia": 0.982,
+   "Error medio Antioquia (pts)": 1.6
+  }
+ },
+ "promedio_nacional": 41.8,
+ "dimensiones": {
+  "Vivienda y hábitat": [
+   "Hacinamiento crítico",
+   "Material inadecuado de pisos",
+   "Material inadecuado de paredes exteriores"
+  ],
+  "Educación y niñez": [
+   "Analfabetismo",
+   "Bajo logro educativo",
+   "Inasistencia escolar",
+   "Rezago escolar",
+   "Barreras a servicios para cuidado de la primera infancia",
+   "Trabajo infantil"
+  ],
+  "Salud": [
+   "Sin aseguramiento en salud",
+   "Barreras de acceso a servicios de salud"
+  ],
+  "Servicios públicos": [
+   "Sin acceso a fuente de agua mejorada",
+   "Inadecuada eliminación de excretas"
+  ],
+  "Trabajo e ingresos": [
+   "Trabajo informal",
+   "Tasa de dependencia"
+  ]
+ },
+ "importancia": {
+  "Educación y niñez": 8.0,
+  "Servicios públicos": 6.3,
+  "Trabajo e ingresos": 4.2,
+  "Vivienda y hábitat": 1.6,
+  "Salud": 1.3
+ },
+ "subregiones": [
+  {
+   "nombre": "Bajo Cauca",
+   "riesgo": 55.1,
+   "ipm_real": 54.9,
+   "base": 41.7,
+   "municipios": 6,
+   "aportes": {
+    "Vivienda y hábitat": 1.7,
+    "Educación y niñez": 7.7,
+    "Salud": -0.1,
+    "Servicios públicos": 3.7,
+    "Trabajo e ingresos": 0.4
+   }
+  },
+  {
+   "nombre": "Urabá",
+   "riesgo": 54.3,
+   "ipm_real": 55.5,
+   "base": 41.9,
+   "municipios": 11,
+   "aportes": {
+    "Vivienda y hábitat": 1.0,
+    "Educación y niñez": 5.5,
+    "Salud": -0.0,
+    "Servicios públicos": 4.8,
+    "Trabajo e ingresos": 1.1
+   }
+  },
+  {
+   "nombre": "Nordeste",
+   "riesgo": 43.4,
+   "ipm_real": 42.3,
+   "base": 41.8,
+   "municipios": 10,
+   "aportes": {
+    "Vivienda y hábitat": -0.7,
+    "Educación y niñez": 2.2,
+    "Salud": -0.7,
+    "Servicios públicos": 4.9,
+    "Trabajo e ingresos": -4.0
+   }
+  },
+  {
+   "nombre": "Occidente",
+   "riesgo": 42.5,
+   "ipm_real": 43.2,
+   "base": 41.9,
+   "municipios": 19,
+   "aportes": {
+    "Vivienda y hábitat": -0.7,
+    "Educación y niñez": 3.0,
+    "Salud": -0.5,
+    "Servicios públicos": 1.5,
+    "Trabajo e ingresos": -2.6
+   }
+  },
+  {
+   "nombre": "Norte",
+   "riesgo": 40.8,
+   "ipm_real": 40.3,
+   "base": 41.7,
+   "municipios": 17,
+   "aportes": {
+    "Vivienda y hábitat": -1.4,
+    "Educación y niñez": 1.7,
+    "Salud": -0.3,
+    "Servicios públicos": 2.3,
+    "Trabajo e ingresos": -3.2
+   }
+  },
+  {
+   "nombre": "Suroeste",
+   "riesgo": 36.8,
+   "ipm_real": 36.7,
+   "base": 41.9,
+   "municipios": 23,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": 2.3,
+    "Salud": -0.5,
+    "Servicios públicos": -0.7,
+    "Trabajo e ingresos": -4.5
+   }
+  },
+  {
+   "nombre": "Magdalena Medio",
+   "riesgo": 36.3,
+   "ipm_real": 35.4,
+   "base": 41.8,
+   "municipios": 6,
+   "aportes": {
+    "Vivienda y hábitat": -0.8,
+    "Educación y niñez": 0.2,
+    "Salud": -0.2,
+    "Servicios públicos": -1.1,
+    "Trabajo e ingresos": -3.7
+   }
+  },
+  {
+   "nombre": "Oriente",
+   "riesgo": 28.1,
+   "ipm_real": 28.4,
+   "base": 41.8,
+   "municipios": 23,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -2.9,
+    "Salud": -0.7,
+    "Servicios públicos": -3.9,
+    "Trabajo e ingresos": -4.3
+   }
+  },
+  {
+   "nombre": "Valle de Aburrá",
+   "riesgo": 11.7,
+   "ipm_real": 12.0,
+   "base": 41.7,
+   "municipios": 10,
+   "aportes": {
+    "Vivienda y hábitat": -2.0,
+    "Educación y niñez": -13.1,
+    "Salud": 0.0,
+    "Servicios públicos": -7.8,
+    "Trabajo e ingresos": -7.1
+   }
+  }
+ ],
+ "municipios": [
+  {
+   "id": "05873",
+   "nombre": "Vigía del Fuerte",
+   "subregion": "Urabá",
+   "riesgo": 75.8,
+   "ipm_real": 76.1,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": 0.2,
+    "Educación y niñez": 11.1,
+    "Salud": 0.6,
+    "Servicios públicos": 15.9,
+    "Trabajo e ingresos": 6.7
+   }
+  },
+  {
+   "id": "05475",
+   "nombre": "Murindó",
+   "subregion": "Urabá",
+   "riesgo": 73.6,
+   "ipm_real": 81.5,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": 0.3,
+    "Educación y niñez": 14.9,
+    "Salud": 0.3,
+    "Servicios públicos": 14.1,
+    "Trabajo e ingresos": 1.8
+   }
+  },
+  {
+   "id": "05120",
+   "nombre": "Cáceres",
+   "subregion": "Bajo Cauca",
+   "riesgo": 66.7,
+   "ipm_real": 66.4,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 1.7,
+    "Educación y niñez": 12.2,
+    "Salud": 0.9,
+    "Servicios públicos": 7.5,
+    "Trabajo e ingresos": 2.8
+   }
+  },
+  {
+   "id": "05234",
+   "nombre": "Dabeiba",
+   "subregion": "Occidente",
+   "riesgo": 64.7,
+   "ipm_real": 60.5,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 0.9,
+    "Educación y niñez": 13.6,
+    "Salud": -0.0,
+    "Servicios públicos": 8.5,
+    "Trabajo e ingresos": 0.1
+   }
+  },
+  {
+   "id": "05659",
+   "nombre": "San Juan de Urabá",
+   "subregion": "Urabá",
+   "riesgo": 62.8,
+   "ipm_real": 61.1,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 2.1,
+    "Educación y niñez": 6.7,
+    "Salud": -1.9,
+    "Servicios públicos": 9.5,
+    "Trabajo e ingresos": 4.8
+   }
+  },
+  {
+   "id": "05490",
+   "nombre": "Necoclí",
+   "subregion": "Urabá",
+   "riesgo": 61.5,
+   "ipm_real": 62.7,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 1.3,
+    "Educación y niñez": 6.4,
+    "Salud": 0.5,
+    "Servicios públicos": 9.6,
+    "Trabajo e ingresos": 2.2
+   }
+  },
+  {
+   "id": "05134",
+   "nombre": "Campamento",
+   "subregion": "Norte",
+   "riesgo": 61.4,
+   "ipm_real": 59.3,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -0.9,
+    "Educación y niñez": 14.4,
+    "Salud": -1.1,
+    "Servicios públicos": 9.7,
+    "Trabajo e ingresos": -2.6
+   }
+  },
+  {
+   "id": "05665",
+   "nombre": "San Pedro de Urabá",
+   "subregion": "Urabá",
+   "riesgo": 60.1,
+   "ipm_real": 62.3,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": 2.6,
+    "Educación y niñez": 7.0,
+    "Salud": -0.7,
+    "Servicios públicos": 6.7,
+    "Trabajo e ingresos": 2.2
+   }
+  },
+  {
+   "id": "05495",
+   "nombre": "Nechí",
+   "subregion": "Bajo Cauca",
+   "riesgo": 59.6,
+   "ipm_real": 61.5,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 2.7,
+    "Educación y niñez": 8.1,
+    "Salud": 1.2,
+    "Servicios públicos": 6.6,
+    "Trabajo e ingresos": -0.6
+   }
+  },
+  {
+   "id": "05051",
+   "nombre": "Arboletes",
+   "subregion": "Urabá",
+   "riesgo": 58.8,
+   "ipm_real": 59.1,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": 2.6,
+    "Educación y niñez": 5.6,
+    "Salud": 0.3,
+    "Servicios públicos": 5.3,
+    "Trabajo e ingresos": 3.1
+   }
+  },
+  {
+   "id": "05854",
+   "nombre": "Valdivia",
+   "subregion": "Norte",
+   "riesgo": 58.7,
+   "ipm_real": 59.3,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 8.6,
+    "Salud": -0.7,
+    "Servicios públicos": 9.3,
+    "Trabajo e ingresos": 1.2
+   }
+  },
+  {
+   "id": "05895",
+   "nombre": "Zaragoza",
+   "subregion": "Bajo Cauca",
+   "riesgo": 58.2,
+   "ipm_real": 58.0,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": 0.8,
+    "Educación y niñez": 8.3,
+    "Salud": -0.2,
+    "Servicios públicos": 5.9,
+    "Trabajo e ingresos": 2.2
+   }
+  },
+  {
+   "id": "05361",
+   "nombre": "Ituango",
+   "subregion": "Norte",
+   "riesgo": 58.0,
+   "ipm_real": 57.6,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": 0.1,
+    "Educación y niñez": 12.1,
+    "Salud": -0.5,
+    "Servicios públicos": 5.7,
+    "Trabajo e ingresos": -1.6
+   }
+  },
+  {
+   "id": "05125",
+   "nombre": "Caicedo",
+   "subregion": "Occidente",
+   "riesgo": 57.3,
+   "ipm_real": 54.6,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": 0.4,
+    "Educación y niñez": 9.0,
+    "Salud": 1.1,
+    "Servicios públicos": 6.0,
+    "Trabajo e ingresos": -1.3
+   }
+  },
+  {
+   "id": "05107",
+   "nombre": "Briceño",
+   "subregion": "Norte",
+   "riesgo": 56.2,
+   "ipm_real": 55.4,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -0.7,
+    "Educación y niñez": 10.5,
+    "Salud": 0.3,
+    "Servicios públicos": 6.2,
+    "Trabajo e ingresos": -1.7
+   }
+  },
+  {
+   "id": "05480",
+   "nombre": "Mutatá",
+   "subregion": "Urabá",
+   "riesgo": 56.2,
+   "ipm_real": 57.8,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": 0.9,
+    "Educación y niñez": 9.7,
+    "Salud": 0.3,
+    "Servicios públicos": 5.1,
+    "Trabajo e ingresos": -1.8
+   }
+  },
+  {
+   "id": "05091",
+   "nombre": "Betania",
+   "subregion": "Suroeste",
+   "riesgo": 55.9,
+   "ipm_real": 53.6,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 8.1,
+    "Salud": 0.7,
+    "Servicios públicos": 9.1,
+    "Trabajo e ingresos": -2.3
+   }
+  },
+  {
+   "id": "05790",
+   "nombre": "Tarazá",
+   "subregion": "Bajo Cauca",
+   "riesgo": 55.3,
+   "ipm_real": 53.5,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 1.0,
+    "Educación y niñez": 11.3,
+    "Salud": -1.3,
+    "Servicios públicos": 3.3,
+    "Trabajo e ingresos": -0.6
+   }
+  },
+  {
+   "id": "05093",
+   "nombre": "Betulia",
+   "subregion": "Suroeste",
+   "riesgo": 54.7,
+   "ipm_real": 53.1,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": 11.7,
+    "Salud": -0.3,
+    "Servicios públicos": 5.1,
+    "Trabajo e ingresos": -2.4
+   }
+  },
+  {
+   "id": "05842",
+   "nombre": "Uramita",
+   "subregion": "Occidente",
+   "riesgo": 54.2,
+   "ipm_real": 55.6,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -0.4,
+    "Educación y niñez": 5.4,
+    "Salud": -0.3,
+    "Servicios públicos": 8.1,
+    "Trabajo e ingresos": -0.8
+   }
+  },
+  {
+   "id": "05483",
+   "nombre": "Nariño",
+   "subregion": "Oriente",
+   "riesgo": 54.1,
+   "ipm_real": 51.8,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.4,
+    "Educación y niñez": 7.9,
+    "Salud": -1.4,
+    "Servicios públicos": 9.6,
+    "Trabajo e ingresos": -2.6
+   }
+  },
+  {
+   "id": "05250",
+   "nombre": "El Bagre",
+   "subregion": "Bajo Cauca",
+   "riesgo": 53.4,
+   "ipm_real": 53.7,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": 1.5,
+    "Educación y niñez": 6.8,
+    "Salud": -0.6,
+    "Servicios públicos": 3.6,
+    "Trabajo e ingresos": -0.1
+   }
+  },
+  {
+   "id": "05040",
+   "nombre": "Anorí",
+   "subregion": "Nordeste",
+   "riesgo": 53.3,
+   "ipm_real": 53.3,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -0.8,
+    "Educación y niñez": 7.2,
+    "Salud": -0.5,
+    "Servicios públicos": 8.2,
+    "Trabajo e ingresos": -2.8
+   }
+  },
+  {
+   "id": "05819",
+   "nombre": "Toledo",
+   "subregion": "Norte",
+   "riesgo": 53.3,
+   "ipm_real": 53.5,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -0.8,
+    "Educación y niñez": 3.9,
+    "Salud": 2.7,
+    "Servicios públicos": 4.7,
+    "Trabajo e ingresos": 1.4
+   }
+  },
+  {
+   "id": "05628",
+   "nombre": "Sabanalarga",
+   "subregion": "Occidente",
+   "riesgo": 52.3,
+   "ipm_real": 52.8,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": 0.3,
+    "Educación y niñez": 4.0,
+    "Salud": -0.8,
+    "Servicios públicos": 3.1,
+    "Trabajo e ingresos": 3.8
+   }
+  },
+  {
+   "id": "05038",
+   "nombre": "Angostura",
+   "subregion": "Norte",
+   "riesgo": 52.2,
+   "ipm_real": 53.8,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 8.4,
+    "Salud": 0.8,
+    "Servicios públicos": 5.4,
+    "Trabajo e ingresos": -2.6
+   }
+  },
+  {
+   "id": "05284",
+   "nombre": "Frontino",
+   "subregion": "Occidente",
+   "riesgo": 51.5,
+   "ipm_real": 51.3,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -0.3,
+    "Educación y niñez": 7.7,
+    "Salud": -1.1,
+    "Servicios públicos": 5.6,
+    "Trabajo e ingresos": -1.7
+   }
+  },
+  {
+   "id": "05837",
+   "nombre": "Turbo",
+   "subregion": "Urabá",
+   "riesgo": 51.4,
+   "ipm_real": 49.9,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": 0.8,
+    "Educación y niñez": 2.2,
+    "Salud": 0.3,
+    "Servicios públicos": 5.0,
+    "Trabajo e ingresos": 1.2
+   }
+  },
+  {
+   "id": "05642",
+   "nombre": "Salgar",
+   "subregion": "Suroeste",
+   "riesgo": 50.7,
+   "ipm_real": 49.7,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.2,
+    "Educación y niñez": 8.3,
+    "Salud": -0.3,
+    "Servicios públicos": 7.8,
+    "Trabajo e ingresos": -5.7
+   }
+  },
+  {
+   "id": "05044",
+   "nombre": "Anzá",
+   "subregion": "Occidente",
+   "riesgo": 50.4,
+   "ipm_real": 47.1,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.1,
+    "Educación y niñez": 11.0,
+    "Salud": -0.5,
+    "Servicios públicos": 4.3,
+    "Trabajo e ingresos": -4.8
+   }
+  },
+  {
+   "id": "05647",
+   "nombre": "San Andrés de Cuerquía",
+   "subregion": "Norte",
+   "riesgo": 49.0,
+   "ipm_real": 48.5,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": 4.3,
+    "Salud": -1.2,
+    "Servicios públicos": 7.9,
+    "Trabajo e ingresos": -2.9
+   }
+  },
+  {
+   "id": "05847",
+   "nombre": "Urrao",
+   "subregion": "Suroeste",
+   "riesgo": 48.2,
+   "ipm_real": 46.1,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 6.2,
+    "Salud": 0.6,
+    "Servicios públicos": 4.5,
+    "Trabajo e ingresos": -3.5
+   }
+  },
+  {
+   "id": "05055",
+   "nombre": "Argelia",
+   "subregion": "Oriente",
+   "riesgo": 48.0,
+   "ipm_real": 48.7,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 4.3,
+    "Salud": -0.8,
+    "Servicios públicos": 5.7,
+    "Trabajo e ingresos": -2.1
+   }
+  },
+  {
+   "id": "05604",
+   "nombre": "Remedios",
+   "subregion": "Nordeste",
+   "riesgo": 47.7,
+   "ipm_real": 42.1,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -0.1,
+    "Educación y niñez": 7.9,
+    "Salud": -1.0,
+    "Servicios públicos": 4.0,
+    "Trabajo e ingresos": -5.0
+   }
+  },
+  {
+   "id": "05543",
+   "nombre": "Peque",
+   "subregion": "Occidente",
+   "riesgo": 47.6,
+   "ipm_real": 53.5,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": 0.4,
+    "Educación y niñez": 12.2,
+    "Salud": -0.9,
+    "Servicios públicos": -2.7,
+    "Trabajo e ingresos": -3.4
+   }
+  },
+  {
+   "id": "05893",
+   "nombre": "Yondó",
+   "subregion": "Magdalena Medio",
+   "riesgo": 47.3,
+   "ipm_real": 46.3,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": 1.0,
+    "Educación y niñez": 3.4,
+    "Salud": 1.5,
+    "Servicios públicos": -0.9,
+    "Trabajo e ingresos": 1.0
+   }
+  },
+  {
+   "id": "05113",
+   "nombre": "Buriticá",
+   "subregion": "Occidente",
+   "riesgo": 47.0,
+   "ipm_real": 51.3,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": 1.0,
+    "Educación y niñez": 7.7,
+    "Salud": 1.2,
+    "Servicios públicos": -3.7,
+    "Trabajo e ingresos": -1.4
+   }
+  },
+  {
+   "id": "05885",
+   "nombre": "Yalí",
+   "subregion": "Nordeste",
+   "riesgo": 45.8,
+   "ipm_real": 44.0,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -0.1,
+    "Educación y niñez": 6.4,
+    "Salud": -1.6,
+    "Servicios públicos": 4.1,
+    "Trabajo e ingresos": -5.0
+   }
+  },
+  {
+   "id": "05576",
+   "nombre": "Pueblorrico",
+   "subregion": "Suroeste",
+   "riesgo": 45.3,
+   "ipm_real": 45.7,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": 5.0,
+    "Salud": -1.7,
+    "Servicios públicos": 4.8,
+    "Trabajo e ingresos": -3.2
+   }
+  },
+  {
+   "id": "05031",
+   "nombre": "Amalfi",
+   "subregion": "Nordeste",
+   "riesgo": 44.9,
+   "ipm_real": 43.3,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 3.6,
+    "Salud": -0.2,
+    "Servicios públicos": 4.9,
+    "Trabajo e ingresos": -4.3
+   }
+  },
+  {
+   "id": "05652",
+   "nombre": "San Francisco",
+   "subregion": "Oriente",
+   "riesgo": 44.7,
+   "ipm_real": 46.4,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": 7.8,
+    "Salud": 0.4,
+    "Servicios públicos": -2.4,
+    "Trabajo e ingresos": -1.0
+   }
+  },
+  {
+   "id": "05209",
+   "nombre": "Concordia",
+   "subregion": "Suroeste",
+   "riesgo": 44.5,
+   "ipm_real": 48.5,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.3,
+    "Educación y niñez": 7.9,
+    "Salud": -1.2,
+    "Servicios públicos": -0.9,
+    "Trabajo e ingresos": -1.3
+   }
+  },
+  {
+   "id": "05736",
+   "nombre": "Segovia",
+   "subregion": "Nordeste",
+   "riesgo": 43.9,
+   "ipm_real": 42.8,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": 0.0,
+    "Educación y niñez": 2.4,
+    "Salud": 0.3,
+    "Servicios públicos": 4.4,
+    "Trabajo e ingresos": -5.2
+   }
+  },
+  {
+   "id": "05086",
+   "nombre": "Belmira",
+   "subregion": "Norte",
+   "riesgo": 43.2,
+   "ipm_real": 40.8,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.5,
+    "Educación y niñez": 2.6,
+    "Salud": 0.4,
+    "Servicios públicos": 4.5,
+    "Trabajo e ingresos": -4.2
+   }
+  },
+  {
+   "id": "05690",
+   "nombre": "Santo Domingo",
+   "subregion": "Nordeste",
+   "riesgo": 43.2,
+   "ipm_real": 41.5,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": 0.2,
+    "Salud": -1.0,
+    "Servicios públicos": 8.2,
+    "Trabajo e ingresos": -4.1
+   }
+  },
+  {
+   "id": "05138",
+   "nombre": "Cañasgordas",
+   "subregion": "Occidente",
+   "riesgo": 43.2,
+   "ipm_real": 45.3,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -0.6,
+    "Educación y niñez": -0.4,
+    "Salud": -0.9,
+    "Servicios públicos": 4.2,
+    "Trabajo e ingresos": -0.7
+   }
+  },
+  {
+   "id": "05315",
+   "nombre": "Guadalupe",
+   "subregion": "Norte",
+   "riesgo": 42.9,
+   "ipm_real": 41.1,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": 4.4,
+    "Salud": -2.4,
+    "Servicios públicos": 5.4,
+    "Trabajo e ingresos": -4.5
+   }
+  },
+  {
+   "id": "05890",
+   "nombre": "Yolombó",
+   "subregion": "Nordeste",
+   "riesgo": 42.8,
+   "ipm_real": 45.0,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": -0.3,
+    "Salud": -0.8,
+    "Servicios públicos": 7.0,
+    "Trabajo e ingresos": -4.0
+   }
+  },
+  {
+   "id": "05197",
+   "nombre": "Cocorná",
+   "subregion": "Oriente",
+   "riesgo": 42.5,
+   "ipm_real": 42.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": 1.9,
+    "Salud": -1.0,
+    "Servicios públicos": 2.2,
+    "Trabajo e ingresos": -0.6
+   }
+  },
+  {
+   "id": "05240",
+   "nombre": "Ebéjico",
+   "subregion": "Occidente",
+   "riesgo": 41.2,
+   "ipm_real": 39.1,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.0,
+    "Educación y niñez": 4.6,
+    "Salud": -0.3,
+    "Servicios públicos": 0.9,
+    "Trabajo e ingresos": -4.6
+   }
+  },
+  {
+   "id": "05670",
+   "nombre": "San Roque",
+   "subregion": "Nordeste",
+   "riesgo": 41.2,
+   "ipm_real": 40.8,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.1,
+    "Educación y niñez": 0.3,
+    "Salud": -0.2,
+    "Servicios públicos": 4.0,
+    "Trabajo e ingresos": -3.7
+   }
+  },
+  {
+   "id": "05411",
+   "nombre": "Liborina",
+   "subregion": "Occidente",
+   "riesgo": 40.9,
+   "ipm_real": 43.3,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": -0.7,
+    "Salud": -0.2,
+    "Servicios públicos": 3.0,
+    "Trabajo e ingresos": -1.6
+   }
+  },
+  {
+   "id": "05425",
+   "nombre": "Maceo",
+   "subregion": "Magdalena Medio",
+   "riesgo": 40.8,
+   "ipm_real": 36.0,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.4,
+    "Educación y niñez": 1.6,
+    "Salud": -1.1,
+    "Servicios públicos": 4.1,
+    "Trabajo e ingresos": -4.5
+   }
+  },
+  {
+   "id": "05858",
+   "nombre": "Vegachí",
+   "subregion": "Nordeste",
+   "riesgo": 40.6,
+   "ipm_real": 41.0,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.2,
+    "Educación y niñez": 4.2,
+    "Salud": -0.7,
+    "Servicios públicos": -1.2,
+    "Trabajo e ingresos": -2.0
+   }
+  },
+  {
+   "id": "05034",
+   "nombre": "Andes",
+   "subregion": "Suroeste",
+   "riesgo": 40.6,
+   "ipm_real": 40.1,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": 0.5,
+    "Salud": -0.2,
+    "Servicios públicos": 4.4,
+    "Trabajo e ingresos": -4.8
+   }
+  },
+  {
+   "id": "05002",
+   "nombre": "Abejorral",
+   "subregion": "Oriente",
+   "riesgo": 39.2,
+   "ipm_real": 40.6,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": 4.8,
+    "Salud": -1.5,
+    "Servicios públicos": 0.7,
+    "Trabajo e ingresos": -5.0
+   }
+  },
+  {
+   "id": "05059",
+   "nombre": "Armenia",
+   "subregion": "Occidente",
+   "riesgo": 39.0,
+   "ipm_real": 37.7,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -2.0,
+    "Educación y niñez": 4.7,
+    "Salud": -1.7,
+    "Servicios públicos": 0.2,
+    "Trabajo e ingresos": -3.8
+   }
+  },
+  {
+   "id": "05467",
+   "nombre": "Montebello",
+   "subregion": "Suroeste",
+   "riesgo": 39.0,
+   "ipm_real": 39.5,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": 3.1,
+    "Salud": -0.3,
+    "Servicios públicos": -0.5,
+    "Trabajo e ingresos": -3.3
+   }
+  },
+  {
+   "id": "05101",
+   "nombre": "Ciudad Bolívar",
+   "subregion": "Suroeste",
+   "riesgo": 37.9,
+   "ipm_real": 40.4,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -2.0,
+    "Educación y niñez": 4.2,
+    "Salud": -0.7,
+    "Servicios públicos": -0.9,
+    "Trabajo e ingresos": -4.7
+   }
+  },
+  {
+   "id": "05154",
+   "nombre": "Caucasia",
+   "subregion": "Bajo Cauca",
+   "riesgo": 37.4,
+   "ipm_real": 36.0,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": 2.3,
+    "Educación y niñez": -0.3,
+    "Salud": -0.4,
+    "Servicios públicos": -4.9,
+    "Trabajo e ingresos": -1.2
+   }
+  },
+  {
+   "id": "05792",
+   "nombre": "Tarso",
+   "subregion": "Suroeste",
+   "riesgo": 37.2,
+   "ipm_real": 42.6,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": 4.8,
+    "Salud": -0.3,
+    "Servicios públicos": -2.1,
+    "Trabajo e ingresos": -5.7
+   }
+  },
+  {
+   "id": "05756",
+   "nombre": "Sonsón",
+   "subregion": "Oriente",
+   "riesgo": 37.0,
+   "ipm_real": 37.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": 1.4,
+    "Salud": -0.6,
+    "Servicios públicos": 1.8,
+    "Trabajo e ingresos": -5.0
+   }
+  },
+  {
+   "id": "05172",
+   "nombre": "Chigorodó",
+   "subregion": "Urabá",
+   "riesgo": 37.0,
+   "ipm_real": 37.7,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -0.4,
+    "Educación y niñez": 1.8,
+    "Salud": 0.4,
+    "Servicios públicos": -5.4,
+    "Trabajo e ingresos": -1.2
+   }
+  },
+  {
+   "id": "05347",
+   "nombre": "Heliconia",
+   "subregion": "Occidente",
+   "riesgo": 36.1,
+   "ipm_real": 37.5,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -0.4,
+    "Salud": 0.6,
+    "Servicios públicos": 0.3,
+    "Trabajo e ingresos": -4.8
+   }
+  },
+  {
+   "id": "05658",
+   "nombre": "San José de la Montaña",
+   "subregion": "Norte",
+   "riesgo": 35.2,
+   "ipm_real": 34.0,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -2.0,
+    "Educación y niñez": 0.3,
+    "Salud": 0.3,
+    "Servicios públicos": -0.6,
+    "Trabajo e ingresos": -4.8
+   }
+  },
+  {
+   "id": "05686",
+   "nombre": "Santa Rosa de Osos",
+   "subregion": "Norte",
+   "riesgo": 35.0,
+   "ipm_real": 30.9,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": -4.0,
+    "Salud": -1.4,
+    "Servicios públicos": 5.0,
+    "Trabajo e ingresos": -5.1
+   }
+  },
+  {
+   "id": "05036",
+   "nombre": "Angelópolis",
+   "subregion": "Suroeste",
+   "riesgo": 34.4,
+   "ipm_real": 30.7,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": 5.2,
+    "Salud": -1.5,
+    "Servicios públicos": -3.4,
+    "Trabajo e ingresos": -6.0
+   }
+  },
+  {
+   "id": "05353",
+   "nombre": "Hispania",
+   "subregion": "Suroeste",
+   "riesgo": 34.2,
+   "ipm_real": 36.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": 0.4,
+    "Salud": 0.1,
+    "Servicios públicos": -1.5,
+    "Trabajo e ingresos": -4.6
+   }
+  },
+  {
+   "id": "05004",
+   "nombre": "Abriaquí",
+   "subregion": "Occidente",
+   "riesgo": 34.2,
+   "ipm_real": 34.8,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.1,
+    "Educación y niñez": -8.0,
+    "Salud": -1.2,
+    "Servicios públicos": 5.6,
+    "Trabajo e ingresos": -3.1
+   }
+  },
+  {
+   "id": "05313",
+   "nombre": "Granada",
+   "subregion": "Oriente",
+   "riesgo": 34.0,
+   "ipm_real": 33.4,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": 3.2,
+    "Salud": -1.8,
+    "Servicios públicos": -3.8,
+    "Trabajo e ingresos": -3.8
+   }
+  },
+  {
+   "id": "05887",
+   "nombre": "Yarumal",
+   "subregion": "Norte",
+   "riesgo": 33.7,
+   "ipm_real": 33.8,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": -1.1,
+    "Salud": -0.6,
+    "Servicios públicos": -2.5,
+    "Trabajo e ingresos": -2.3
+   }
+  },
+  {
+   "id": "05667",
+   "nombre": "San Rafael",
+   "subregion": "Oriente",
+   "riesgo": 33.6,
+   "ipm_real": 36.8,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -3.2,
+    "Salud": 0.4,
+    "Servicios públicos": -0.0,
+    "Trabajo e ingresos": -3.7
+   }
+  },
+  {
+   "id": "05585",
+   "nombre": "Puerto Nare",
+   "subregion": "Magdalena Medio",
+   "riesgo": 33.5,
+   "ipm_real": 33.1,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.5,
+    "Educación y niñez": -0.4,
+    "Salud": 0.4,
+    "Servicios públicos": -4.5,
+    "Trabajo e ingresos": -2.4
+   }
+  },
+  {
+   "id": "05147",
+   "nombre": "Carepa",
+   "subregion": "Urabá",
+   "riesgo": 33.2,
+   "ipm_real": 34.4,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -0.5,
+    "Educación y niñez": 0.2,
+    "Salud": -1.4,
+    "Servicios públicos": -4.7,
+    "Trabajo e ingresos": -2.6
+   }
+  },
+  {
+   "id": "05142",
+   "nombre": "Caracolí",
+   "subregion": "Magdalena Medio",
+   "riesgo": 33.2,
+   "ipm_real": 35.9,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": -2.9,
+    "Salud": -1.6,
+    "Servicios públicos": 4.1,
+    "Trabajo e ingresos": -7.2
+   }
+  },
+  {
+   "id": "05501",
+   "nombre": "Olaya",
+   "subregion": "Occidente",
+   "riesgo": 33.1,
+   "ipm_real": 33.4,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.5,
+    "Educación y niñez": 3.1,
+    "Salud": -0.7,
+    "Servicios públicos": -6.4,
+    "Trabajo e ingresos": -2.9
+   }
+  },
+  {
+   "id": "05789",
+   "nombre": "Támesis",
+   "subregion": "Suroeste",
+   "riesgo": 33.0,
+   "ipm_real": 36.6,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.5,
+    "Educación y niñez": -2.0,
+    "Salud": 0.6,
+    "Servicios públicos": -2.1,
+    "Trabajo e ingresos": -3.3
+   }
+  },
+  {
+   "id": "05390",
+   "nombre": "La Pintada",
+   "subregion": "Suroeste",
+   "riesgo": 32.7,
+   "ipm_real": 31.2,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -0.6,
+    "Educación y niñez": -0.6,
+    "Salud": 0.4,
+    "Servicios públicos": -1.4,
+    "Trabajo e ingresos": -7.0
+   }
+  },
+  {
+   "id": "05282",
+   "nombre": "Fredonia",
+   "subregion": "Suroeste",
+   "riesgo": 32.4,
+   "ipm_real": 31.6,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": -0.5,
+    "Salud": -0.0,
+    "Servicios públicos": -2.0,
+    "Trabajo e ingresos": -5.4
+   }
+  },
+  {
+   "id": "05145",
+   "nombre": "Caramanta",
+   "subregion": "Suroeste",
+   "riesgo": 32.4,
+   "ipm_real": 30.5,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.2,
+    "Educación y niñez": -0.5,
+    "Salud": -2.3,
+    "Servicios públicos": -1.6,
+    "Trabajo e ingresos": -3.2
+   }
+  },
+  {
+   "id": "05306",
+   "nombre": "Giraldo",
+   "subregion": "Occidente",
+   "riesgo": 32.3,
+   "ipm_real": 33.4,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.4,
+    "Educación y niñez": -4.8,
+    "Salud": -2.4,
+    "Servicios públicos": 2.3,
+    "Trabajo e ingresos": -3.7
+   }
+  },
+  {
+   "id": "05310",
+   "nombre": "Gómez Plata",
+   "subregion": "Norte",
+   "riesgo": 32.1,
+   "ipm_real": 34.1,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": -2.4,
+    "Salud": -0.6,
+    "Servicios públicos": -0.9,
+    "Trabajo e ingresos": -4.5
+   }
+  },
+  {
+   "id": "05660",
+   "nombre": "San Luis",
+   "subregion": "Oriente",
+   "riesgo": 31.7,
+   "ipm_real": 32.4,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -2.2,
+    "Educación y niñez": -1.2,
+    "Salud": -1.5,
+    "Servicios públicos": -1.9,
+    "Trabajo e ingresos": -3.5
+   }
+  },
+  {
+   "id": "05579",
+   "nombre": "Puerto Berrío",
+   "subregion": "Magdalena Medio",
+   "riesgo": 31.7,
+   "ipm_real": 32.1,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": 0.2,
+    "Educación y niñez": -4.1,
+    "Salud": 0.1,
+    "Servicios públicos": -1.3,
+    "Trabajo e ingresos": -4.9
+   }
+  },
+  {
+   "id": "05206",
+   "nombre": "Concepción",
+   "subregion": "Oriente",
+   "riesgo": 31.2,
+   "ipm_real": 33.0,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.1,
+    "Educación y niñez": -1.4,
+    "Salud": -1.5,
+    "Servicios públicos": -1.5,
+    "Trabajo e ingresos": -4.5
+   }
+  },
+  {
+   "id": "05591",
+   "nombre": "Puerto Triunfo",
+   "subregion": "Magdalena Medio",
+   "riesgo": 31.1,
+   "ipm_real": 29.3,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": 3.6,
+    "Salud": -0.4,
+    "Servicios públicos": -7.9,
+    "Trabajo e ingresos": -4.4
+   }
+  },
+  {
+   "id": "05809",
+   "nombre": "Titiribí",
+   "subregion": "Suroeste",
+   "riesgo": 31.1,
+   "ipm_real": 30.3,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": 2.6,
+    "Salud": -1.9,
+    "Servicios públicos": -5.1,
+    "Trabajo e ingresos": -4.7
+   }
+  },
+  {
+   "id": "05190",
+   "nombre": "Cisneros",
+   "subregion": "Nordeste",
+   "riesgo": 30.9,
+   "ipm_real": 28.8,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -0.8,
+    "Educación y niñez": -10.1,
+    "Salud": -1.5,
+    "Servicios públicos": 5.9,
+    "Trabajo e ingresos": -4.0
+   }
+  },
+  {
+   "id": "05656",
+   "nombre": "San Jerónimo",
+   "subregion": "Occidente",
+   "riesgo": 30.0,
+   "ipm_real": 30.5,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": -3.4,
+    "Salud": -0.3,
+    "Servicios públicos": -2.7,
+    "Trabajo e ingresos": -4.2
+   }
+  },
+  {
+   "id": "05861",
+   "nombre": "Venecia",
+   "subregion": "Suroeste",
+   "riesgo": 29.7,
+   "ipm_real": 25.8,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": 2.3,
+    "Salud": 0.1,
+    "Servicios públicos": -6.7,
+    "Trabajo e ingresos": -6.4
+   }
+  },
+  {
+   "id": "05649",
+   "nombre": "San Carlos",
+   "subregion": "Oriente",
+   "riesgo": 29.5,
+   "ipm_real": 30.5,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -0.8,
+    "Salud": -0.7,
+    "Servicios públicos": -6.8,
+    "Trabajo e ingresos": -1.9
+   }
+  },
+  {
+   "id": "05021",
+   "nombre": "Alejandría",
+   "subregion": "Oriente",
+   "riesgo": 29.3,
+   "ipm_real": 31.9,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.2,
+    "Educación y niñez": -1.2,
+    "Salud": -2.1,
+    "Servicios públicos": -4.9,
+    "Trabajo e ingresos": -2.5
+   }
+  },
+  {
+   "id": "05674",
+   "nombre": "San Vicente Ferrer",
+   "subregion": "Oriente",
+   "riesgo": 28.2,
+   "ipm_real": 27.8,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": -2.7,
+    "Salud": -1.1,
+    "Servicios públicos": -2.9,
+    "Trabajo e ingresos": -4.8
+   }
+  },
+  {
+   "id": "05679",
+   "nombre": "Santa Bárbara",
+   "subregion": "Suroeste",
+   "riesgo": 28.1,
+   "ipm_real": 28.1,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.5,
+    "Educación y niñez": -2.0,
+    "Salud": -0.3,
+    "Servicios públicos": -4.4,
+    "Trabajo e ingresos": -5.0
+   }
+  },
+  {
+   "id": "05856",
+   "nombre": "Valparaíso",
+   "subregion": "Suroeste",
+   "riesgo": 27.6,
+   "ipm_real": 25.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.3,
+    "Educación y niñez": -0.8,
+    "Salud": -1.0,
+    "Servicios públicos": -5.1,
+    "Trabajo e ingresos": -5.5
+   }
+  },
+  {
+   "id": "05045",
+   "nombre": "Apartadó",
+   "subregion": "Urabá",
+   "riesgo": 27.4,
+   "ipm_real": 28.0,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": 0.7,
+    "Educación y niñez": -4.6,
+    "Salud": 1.1,
+    "Servicios públicos": -8.4,
+    "Trabajo e ingresos": -3.7
+   }
+  },
+  {
+   "id": "05364",
+   "nombre": "Jardín",
+   "subregion": "Suroeste",
+   "riesgo": 27.2,
+   "ipm_real": 28.5,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": -5.3,
+    "Salud": -1.0,
+    "Servicios públicos": -1.5,
+    "Trabajo e ingresos": -5.2
+   }
+  },
+  {
+   "id": "05042",
+   "nombre": "Santa Fé de Antioquia",
+   "subregion": "Occidente",
+   "riesgo": 26.6,
+   "ipm_real": 29.7,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -0.9,
+    "Educación y niñez": -1.3,
+    "Salud": -1.5,
+    "Servicios públicos": -7.4,
+    "Trabajo e ingresos": -4.6
+   }
+  },
+  {
+   "id": "05761",
+   "nombre": "Sopetrán",
+   "subregion": "Occidente",
+   "riesgo": 26.3,
+   "ipm_real": 28.7,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.2,
+    "Educación y niñez": -6.9,
+    "Salud": -0.2,
+    "Servicios públicos": -1.3,
+    "Trabajo e ingresos": -6.0
+   }
+  },
+  {
+   "id": "05368",
+   "nombre": "Jericó",
+   "subregion": "Suroeste",
+   "riesgo": 25.4,
+   "ipm_real": 25.8,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -4.2,
+    "Salud": -0.3,
+    "Servicios públicos": -5.3,
+    "Trabajo e ingresos": -4.4
+   }
+  },
+  {
+   "id": "05400",
+   "nombre": "La Unión",
+   "subregion": "Oriente",
+   "riesgo": 25.4,
+   "ipm_real": 23.0,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -2.2,
+    "Educación y niñez": -0.8,
+    "Salud": -0.2,
+    "Servicios públicos": -7.1,
+    "Trabajo e ingresos": -6.4
+   }
+  },
+  {
+   "id": "05264",
+   "nombre": "Entrerríos",
+   "subregion": "Norte",
+   "riesgo": 25.0,
+   "ipm_real": 23.1,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -2.3,
+    "Educación y niñez": -5.2,
+    "Salud": 0.6,
+    "Servicios públicos": -2.9,
+    "Trabajo e ingresos": -6.5
+   }
+  },
+  {
+   "id": "05030",
+   "nombre": "Amagá",
+   "subregion": "Suroeste",
+   "riesgo": 24.4,
+   "ipm_real": 22.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": -1.5,
+    "Salud": 0.2,
+    "Servicios públicos": -7.9,
+    "Trabajo e ingresos": -6.1
+   }
+  },
+  {
+   "id": "05079",
+   "nombre": "Barbosa",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 23.7,
+   "ipm_real": 22.2,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": -7.1,
+    "Salud": -0.2,
+    "Servicios públicos": -1.8,
+    "Trabajo e ingresos": -6.8
+   }
+  },
+  {
+   "id": "05697",
+   "nombre": "El Santuario",
+   "subregion": "Oriente",
+   "riesgo": 23.7,
+   "ipm_real": 22.0,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": -2.6,
+    "Salud": -1.0,
+    "Servicios públicos": -8.3,
+    "Trabajo e ingresos": -4.1
+   }
+  },
+  {
+   "id": "05541",
+   "nombre": "Peñol",
+   "subregion": "Oriente",
+   "riesgo": 22.1,
+   "ipm_real": 20.0,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -6.6,
+    "Salud": -1.2,
+    "Servicios públicos": -7.1,
+    "Trabajo e ingresos": -3.3
+   }
+  },
+  {
+   "id": "05237",
+   "nombre": "Donmatías",
+   "subregion": "Norte",
+   "riesgo": 19.7,
+   "ipm_real": 19.7,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -2.3,
+    "Educación y niñez": -7.3,
+    "Salud": -0.9,
+    "Servicios públicos": -5.0,
+    "Trabajo e ingresos": -6.4
+   }
+  },
+  {
+   "id": "05150",
+   "nombre": "Carolina",
+   "subregion": "Norte",
+   "riesgo": 19.4,
+   "ipm_real": 20.4,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -1.8,
+    "Educación y niñez": -9.4,
+    "Salud": -1.2,
+    "Servicios públicos": -6.6,
+    "Trabajo e ingresos": -3.6
+   }
+  },
+  {
+   "id": "05148",
+   "nombre": "El Carmen de Viboral",
+   "subregion": "Oriente",
+   "riesgo": 19.1,
+   "ipm_real": 18.5,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -2.0,
+    "Educación y niñez": -4.5,
+    "Salud": 0.9,
+    "Servicios públicos": -9.7,
+    "Trabajo e ingresos": -6.9
+   }
+  },
+  {
+   "id": "05664",
+   "nombre": "San Pedro de los Milagros",
+   "subregion": "Norte",
+   "riesgo": 18.4,
+   "ipm_real": 19.5,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": -11.8,
+    "Salud": -0.6,
+    "Servicios públicos": -6.3,
+    "Trabajo e ingresos": -3.1
+   }
+  },
+  {
+   "id": "05318",
+   "nombre": "Guarne",
+   "subregion": "Oriente",
+   "riesgo": 15.5,
+   "ipm_real": 17.0,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.3,
+    "Educación y niñez": -10.8,
+    "Salud": -0.0,
+    "Servicios públicos": -8.2,
+    "Trabajo e ingresos": -5.4
+   }
+  },
+  {
+   "id": "05129",
+   "nombre": "Caldas",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 15.3,
+   "ipm_real": 16.0,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -10.9,
+    "Salud": 0.7,
+    "Servicios públicos": -6.3,
+    "Trabajo e ingresos": -7.4
+   }
+  },
+  {
+   "id": "05440",
+   "nombre": "Marinilla",
+   "subregion": "Oriente",
+   "riesgo": 14.4,
+   "ipm_real": 15.4,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -2.1,
+    "Educación y niñez": -10.2,
+    "Salud": 0.1,
+    "Servicios públicos": -9.4,
+    "Trabajo e ingresos": -5.5
+   }
+  },
+  {
+   "id": "05308",
+   "nombre": "Girardota",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 13.9,
+   "ipm_real": 13.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.6,
+    "Educación y niñez": -10.7,
+    "Salud": -0.7,
+    "Servicios públicos": -7.8,
+    "Trabajo e ingresos": -6.7
+   }
+  },
+  {
+   "id": "05088",
+   "nombre": "Bello",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 13.2,
+   "ipm_real": 14.2,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": -13.0,
+    "Salud": 0.4,
+    "Servicios públicos": -8.0,
+    "Trabajo e ingresos": -6.1
+   }
+  },
+  {
+   "id": "05212",
+   "nombre": "Copacabana",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 12.1,
+   "ipm_real": 11.6,
+   "base": 41.9,
+   "aportes": {
+    "Vivienda y hábitat": -2.0,
+    "Educación y niñez": -13.3,
+    "Salud": 0.3,
+    "Servicios públicos": -7.7,
+    "Trabajo e ingresos": -7.0
+   }
+  },
+  {
+   "id": "05376",
+   "nombre": "La Ceja",
+   "subregion": "Oriente",
+   "riesgo": 11.1,
+   "ipm_real": 11.5,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -2.2,
+    "Educación y niñez": -12.1,
+    "Salud": -0.5,
+    "Servicios públicos": -8.8,
+    "Trabajo e ingresos": -7.3
+   }
+  },
+  {
+   "id": "05607",
+   "nombre": "Retiro",
+   "subregion": "Oriente",
+   "riesgo": 10.4,
+   "ipm_real": 11.7,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.3,
+    "Educación y niñez": -12.5,
+    "Salud": -0.8,
+    "Servicios públicos": -8.7,
+    "Trabajo e ingresos": -7.5
+   }
+  },
+  {
+   "id": "05615",
+   "nombre": "Rionegro",
+   "subregion": "Oriente",
+   "riesgo": 10.3,
+   "ipm_real": 9.5,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -2.4,
+    "Educación y niñez": -12.9,
+    "Salud": -0.7,
+    "Servicios públicos": -9.1,
+    "Trabajo e ingresos": -6.6
+   }
+  },
+  {
+   "id": "05001",
+   "nombre": "Medellín",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 10.3,
+   "ipm_real": 12.8,
+   "base": 41.6,
+   "aportes": {
+    "Vivienda y hábitat": -1.9,
+    "Educación y niñez": -13.2,
+    "Salud": -0.2,
+    "Servicios públicos": -9.1,
+    "Trabajo e ingresos": -6.8
+   }
+  },
+  {
+   "id": "05321",
+   "nombre": "Guatapé",
+   "subregion": "Oriente",
+   "riesgo": 10.0,
+   "ipm_real": 11.4,
+   "base": 42.0,
+   "aportes": {
+    "Vivienda y hábitat": -2.4,
+    "Educación y niñez": -14.3,
+    "Salud": -0.2,
+    "Servicios públicos": -9.0,
+    "Trabajo e ingresos": -6.1
+   }
+  },
+  {
+   "id": "05360",
+   "nombre": "Itagüí",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 9.8,
+   "ipm_real": 10.9,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.5,
+    "Educación y niñez": -14.6,
+    "Salud": 0.6,
+    "Servicios públicos": -9.4,
+    "Trabajo e ingresos": -6.6
+   }
+  },
+  {
+   "id": "05380",
+   "nombre": "La Estrella",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 8.6,
+   "ipm_real": 9.2,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.4,
+    "Educación y niñez": -14.5,
+    "Salud": -0.1,
+    "Servicios públicos": -9.4,
+    "Trabajo e ingresos": -7.2
+   }
+  },
+  {
+   "id": "05266",
+   "nombre": "Envigado",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 5.3,
+   "ipm_real": 4.9,
+   "base": 41.3,
+   "aportes": {
+    "Vivienda y hábitat": -1.7,
+    "Educación y niñez": -16.3,
+    "Salud": -0.2,
+    "Servicios públicos": -9.3,
+    "Trabajo e ingresos": -8.6
+   }
+  },
+  {
+   "id": "05631",
+   "nombre": "Sabaneta",
+   "subregion": "Valle de Aburrá",
+   "riesgo": 5.0,
+   "ipm_real": 4.5,
+   "base": 42.2,
+   "aportes": {
+    "Vivienda y hábitat": -2.5,
+    "Educación y niñez": -17.2,
+    "Salud": -0.2,
+    "Servicios públicos": -9.2,
+    "Trabajo e ingresos": -8.1
+   }
+  }
+ ]
+}
